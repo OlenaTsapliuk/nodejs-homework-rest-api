@@ -15,14 +15,12 @@ const updateAvatar = async (req, res, next) => {
   }
   const { path: tempDir, originalname } = req.file;
 
-  // const [extension] = originalname.split(".");
-  // console.log(extension);
   const filename = `${_id}_avatar-image_${originalname}`;
-  const uploadDir = path.join(avatarDir, email, filename);
+  const uploadDir = path.join(avatarDir, filename);
 
   try {
     await fs.rename(tempDir, uploadDir);
-    const avatar = path.join("/avatars", email, filename);
+    const avatar = path.join("/avatars", filename);
 
     const data = await User.findByIdAndUpdate(
       _id,
