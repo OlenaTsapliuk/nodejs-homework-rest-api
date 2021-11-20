@@ -7,9 +7,7 @@ const avatarDir = path.join(__dirname, "../../public/avatars");
 
 const updateAvatar = async (req, res, next) => {
   const { _id, email } = req.user;
-  if (!req.user) {
-    throw new Unauthorized("Not authorized");
-  }
+
   if (!req.file) {
     throw new BadRequest("Enter the file");
   }

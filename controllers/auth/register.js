@@ -8,7 +8,7 @@ const register = async (req, res) => {
   if (user) {
     throw new Conflict(`User with email=${email} already exist`);
   }
-  const avatarURL = gravatar.url(email);
+  const avatarURL = gravatar.url(email, { protocol: "http" });
   const newUser = new User({ email, avatarURL });
   newUser.setPassword(password);
   await newUser.save();
