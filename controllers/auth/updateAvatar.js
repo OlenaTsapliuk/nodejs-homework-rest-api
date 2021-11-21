@@ -3,6 +3,7 @@ const path = require("path");
 const { NotFound, Unauthorized } = require("http-errors");
 const { User } = require("../../model");
 
+const { PORT = 3000 } = process.env;
 const avatarDir = path.join(__dirname, "../../public/avatars");
 
 const updateAvatar = async (req, res, next) => {
@@ -18,7 +19,10 @@ const updateAvatar = async (req, res, next) => {
 
   try {
     await fs.rename(tempDir, uploadDir);
-    const avatar = path.join("/avatars", filename);
+    const avatar = path.join(
+      "http://" + req.header("host") + "/avatars",
+      filename
+    );
 
     const data = await User.findByIdAndUpdate(
       _id,
