@@ -15,10 +15,7 @@ const verify = async (req, res) => {
   if (!user) {
     throw new NotFound("User not found");
   }
-  // await User.findByIdAndUpdate(user._id, {
-  //   verificationToken: null,
-  //   verify: true,
-  // });
+
   res.status(200).json({
     status: "success",
     code: 200,

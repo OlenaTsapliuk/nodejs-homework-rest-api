@@ -4,6 +4,7 @@ const { sendEmail } = require("../../helpers");
 
 const resendingVerify = async (req, res) => {
   const { email } = req.body;
+  const { verificationToken } = req.params;
   if (!email) {
     res.status(400).json({
       code: 400,
