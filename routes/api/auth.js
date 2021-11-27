@@ -6,6 +6,8 @@ const {
   logout,
   currentUser,
   updateAvatar,
+  verify,
+  resendingVerify,
 } = require("../../controllers/auth");
 
 const { joiUserSchema } = require("../../model/user");
@@ -32,4 +34,7 @@ router.patch(
   sizeJimp,
   controllerWrapper(updateAvatar)
 );
+router.get("/verify/:verificationToken", controllerWrapper(verify));
+router.post("/verify/", controllerWrapper(resendingVerify));
+
 module.exports = router;
